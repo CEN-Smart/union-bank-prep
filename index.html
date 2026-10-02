@@ -1,0 +1,2561 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf8" />
+		<title>Bootcamp Assessment Prep</title>
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1,viewport-fit=cover" />
+		<style>
+			:root {
+				color-scheme: light;
+				box-sizing: border-box;
+				padding-top: env(safe-area-inset-top, 0px);
+				padding-bottom: env(safe-area-inset-bottom, 0px);
+			}
+			html {
+				scroll-padding-top: env(safe-area-inset-top, 0px);
+			}
+			body {
+				margin: 0;
+				padding: 0;
+				font:
+					14px -apple-system,
+					BlinkMacSystemFont,
+					sans-serif;
+				background: #faf9f5;
+				color: #141413;
+			}
+			img {
+				max-width: 100%;
+			}
+			[hidden]:not([hidden='until-found' i]) {
+				display: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<title>Bootcamp Assessment Prep</title>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" />
+		<style>
+			/* Layout: one centred working column (max 780px); a sticky exam bar carries section, progress and the clock */
+			:root {
+				--bg: #eef1f5;
+				--surface: #ffffff;
+				--ink: #15203a;
+				--muted: #5a6579;
+				--line: #d6dce5;
+				--accent: #1f4fd1;
+				--accent-ink: #ffffff;
+				--accent-soft: #e4ebfc;
+				--ok: #11764a;
+				--ok-soft: #dcf2e6;
+				--bad: #b0242d;
+				--bad-soft: #fbe3e5;
+				--warn: #9c5600;
+				--warn-soft: #fff0d8;
+				--f-display:
+					'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+				--f-body:
+					'Instrument Sans', ui-sans-serif, system-ui, -apple-system,
+					'Segoe UI', sans-serif;
+				--f-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+			}
+			@media (prefers-color-scheme: dark) {
+				:root:not([data-theme='light']) {
+					--bg: #0e1320;
+					--surface: #161d2c;
+					--ink: #e5e9f2;
+					--muted: #9aa4b7;
+					--line: #29334a;
+					--accent: #86a2ff;
+					--accent-ink: #0e1320;
+					--accent-soft: #1e2945;
+					--ok: #55c98f;
+					--ok-soft: #132e20;
+					--bad: #ff808a;
+					--bad-soft: #3a1a1f;
+					--warn: #f2b45c;
+					--warn-soft: #38290f;
+					color-scheme: dark;
+				}
+			}
+			:root[data-theme='dark'] {
+				--bg: #0e1320;
+				--surface: #161d2c;
+				--ink: #e5e9f2;
+				--muted: #9aa4b7;
+				--line: #29334a;
+				--accent: #86a2ff;
+				--accent-ink: #0e1320;
+				--accent-soft: #1e2945;
+				--ok: #55c98f;
+				--ok-soft: #132e20;
+				--bad: #ff808a;
+				--bad-soft: #3a1a1f;
+				--warn: #f2b45c;
+				--warn-soft: #38290f;
+				color-scheme: dark;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				background: var(--bg);
+				color: var(--ink);
+				font-family: var(--f-body);
+				font-size: 15px;
+				line-height: 1.55;
+				padding-inline: 16px;
+				padding-block: 0 48px;
+			}
+			.wrap {
+				max-width: 780px;
+				margin: 0 auto;
+			}
+			h1,
+			h2,
+			h3 {
+				font-family: var(--f-display);
+				text-wrap: balance;
+				margin: 0;
+				line-height: 1.15;
+			}
+			h1 {
+				font-size: clamp(28px, 6vw, 40px);
+				font-weight: 700;
+				letter-spacing: -0.01em;
+			}
+			h2 {
+				font-size: 22px;
+				font-weight: 700;
+			}
+			h3 {
+				font-size: 17px;
+				font-weight: 500;
+			}
+			p {
+				margin: 0;
+			}
+			.muted {
+				color: var(--muted);
+			}
+			.label {
+				font-size: 11.5px;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				font-weight: 600;
+				color: var(--muted);
+			}
+			.mono {
+				font-family: var(--f-mono);
+				font-variant-numeric: tabular-nums;
+			}
+			button {
+				font: inherit;
+				color: inherit;
+				cursor: pointer;
+			}
+			button:focus-visible,
+			.opt:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 2px;
+			}
+			.btn {
+				border: 1px solid var(--line);
+				background: var(--surface);
+				padding: 10px 16px;
+				border-radius: 8px;
+				font-weight: 600;
+			}
+			.btn:hover {
+				border-color: var(--accent);
+			}
+			.btn.primary {
+				background: var(--accent);
+				color: var(--accent-ink);
+				border-color: var(--accent);
+			}
+			.btn:disabled {
+				opacity: 0.45;
+				cursor: not-allowed;
+			}
+			.row {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				align-items: center;
+			}
+			.stack {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			/* Home */
+			.hero {
+				padding-block: 36px 24px;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+			.facts {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+			.fact {
+				border: 1px solid var(--line);
+				border-radius: 999px;
+				padding: 4px 12px;
+				font-size: 13px;
+				background: var(--surface);
+			}
+			.modes {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 14px;
+			}
+			@media (max-width: 640px) {
+				.modes {
+					grid-template-columns: 1fr;
+				}
+			}
+			.mode {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				min-width: 0;
+			}
+			.mode.lead {
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px var(--accent-soft);
+			}
+			.secs {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+				gap: 8px;
+			}
+			.sec-btn {
+				text-align: left;
+				border: 1px solid var(--line);
+				background: var(--bg);
+				border-radius: 8px;
+				padding: 10px 12px;
+				display: flex;
+				justify-content: space-between;
+				gap: 8px;
+				align-items: baseline;
+			}
+			.sec-btn:hover {
+				border-color: var(--accent);
+			}
+			.sec-btn small {
+				color: var(--muted);
+				font-family: var(--f-mono);
+				font-size: 12px;
+			}
+			.tips {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				padding: 20px;
+			}
+			.tips ul {
+				margin: 8px 0 0;
+				padding-left: 20px;
+				display: grid;
+				gap: 6px;
+			}
+			.history {
+				font-size: 13.5px;
+			}
+			.history span {
+				display: inline-block;
+				margin-right: 12px;
+			}
+
+			/* Exam bar */
+			.bar {
+				position: sticky;
+				top: env(safe-area-inset-top, 0px);
+				z-index: 5;
+				background: var(--bg);
+				padding-block: 12px;
+				border-bottom: 1px solid var(--line);
+				margin-bottom: 18px;
+			}
+			.bar-in {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 12px;
+				flex-wrap: wrap;
+			}
+			.clock {
+				font-family: var(--f-mono);
+				font-weight: 700;
+				font-size: 20px;
+				padding: 4px 12px;
+				border-radius: 8px;
+				background: var(--surface);
+				border: 1px solid var(--line);
+			}
+			.clock.low {
+				color: var(--warn);
+				background: var(--warn-soft);
+				border-color: var(--warn);
+			}
+			.clock.crit {
+				color: var(--bad);
+				background: var(--bad-soft);
+				border-color: var(--bad);
+			}
+			.track {
+				height: 4px;
+				background: var(--line);
+				border-radius: 4px;
+				margin-top: 10px;
+				overflow: hidden;
+			}
+			.track i {
+				display: block;
+				height: 100%;
+				background: var(--accent);
+				transition: width 0.2s;
+			}
+			.dots {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 6px;
+			}
+			.dot {
+				width: 32px;
+				height: 32px;
+				border-radius: 6px;
+				border: 1px solid var(--line);
+				background: var(--surface);
+				font-family: var(--f-mono);
+				font-size: 12px;
+				position: relative;
+			}
+			.dot.done {
+				background: var(--accent-soft);
+				border-color: var(--accent);
+			}
+			.dot.cur {
+				outline: 2px solid var(--accent);
+				outline-offset: 1px;
+			}
+			.dot.flag::after {
+				content: '';
+				position: absolute;
+				top: 2px;
+				right: 2px;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: var(--warn);
+			}
+
+			.card {
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				padding: 22px;
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+			.passage {
+				background: var(--bg);
+				border-left: 3px solid var(--muted);
+				padding: 12px 14px;
+				border-radius: 4px;
+				font-size: 14px;
+				white-space: pre-line;
+			}
+			.qtext {
+				font-size: 17px;
+				font-weight: 500;
+				white-space: pre-line;
+			}
+			.opts {
+				display: grid;
+				gap: 8px;
+			}
+			.opt {
+				display: flex;
+				gap: 12px;
+				align-items: flex-start;
+				text-align: left;
+				border: 1px solid var(--line);
+				background: var(--surface);
+				border-radius: 8px;
+				padding: 12px 14px;
+				width: 100%;
+			}
+			.opt:hover {
+				border-color: var(--accent);
+			}
+			.opt .key {
+				font-family: var(--f-mono);
+				font-weight: 700;
+				font-size: 13px;
+				width: 24px;
+				height: 24px;
+				flex: none;
+				display: grid;
+				place-items: center;
+				border-radius: 5px;
+				border: 1px solid var(--line);
+			}
+			.opt.sel {
+				border-color: var(--accent);
+				background: var(--accent-soft);
+			}
+			.opt.sel .key {
+				background: var(--accent);
+				color: var(--accent-ink);
+				border-color: var(--accent);
+			}
+			.opt.right {
+				border-color: var(--ok);
+				background: var(--ok-soft);
+			}
+			.opt.wrong {
+				border-color: var(--bad);
+				background: var(--bad-soft);
+			}
+			.opt span:last-child {
+				min-width: 0;
+			}
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.confirm {
+				background: var(--warn-soft);
+				border: 1px solid var(--warn);
+				border-radius: 10px;
+				padding: 14px 16px;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.flagbtn.on {
+				border-color: var(--warn);
+				color: var(--warn);
+			}
+			.feedback {
+				border-radius: 8px;
+				padding: 12px 14px;
+				font-size: 14px;
+			}
+			.feedback.ok {
+				background: var(--ok-soft);
+				border: 1px solid var(--ok);
+			}
+			.feedback.no {
+				background: var(--bad-soft);
+				border: 1px solid var(--bad);
+			}
+			.feedback b {
+				display: block;
+				margin-bottom: 2px;
+			}
+
+			/* Results */
+			.score {
+				display: flex;
+				align-items: baseline;
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+			.score .big {
+				font-family: var(--f-display);
+				font-size: 56px;
+				font-weight: 700;
+				line-height: 1;
+			}
+			.sres {
+				display: grid;
+				gap: 10px;
+			}
+			.sline {
+				display: grid;
+				grid-template-columns: minmax(0, 190px) 1fr 64px;
+				gap: 12px;
+				align-items: center;
+				font-size: 14px;
+			}
+			@media (max-width: 520px) {
+				.sline {
+					grid-template-columns: 1fr 64px;
+				}
+				.sline .meter {
+					grid-column: 1 / -1;
+					order: 3;
+				}
+			}
+			.meter {
+				height: 10px;
+				background: var(--line);
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			.meter i {
+				display: block;
+				height: 100%;
+				border-radius: 5px;
+			}
+			.rev {
+				display: grid;
+				gap: 10px;
+			}
+			.ritem {
+				border: 1px solid var(--line);
+				border-radius: 10px;
+				padding: 14px;
+				background: var(--surface);
+				display: grid;
+				gap: 6px;
+				font-size: 14px;
+			}
+			.ritem.no {
+				border-left: 4px solid var(--bad);
+			}
+			.ritem.ok {
+				border-left: 4px solid var(--ok);
+			}
+			.pill {
+				display: inline-block;
+				font-size: 11.5px;
+				font-weight: 600;
+				padding: 2px 8px;
+				border-radius: 999px;
+				background: var(--bg);
+				border: 1px solid var(--line);
+			}
+
+			/* Calculator */
+			.calc {
+				position: fixed;
+				right: 16px;
+				bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+				width: 260px;
+				max-width: calc(100vw - 32px);
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				padding: 12px;
+				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+				z-index: 20;
+			}
+			.calc .scr {
+				font-family: var(--f-mono);
+				background: var(--bg);
+				border-radius: 6px;
+				padding: 8px 10px;
+				text-align: right;
+				min-height: 58px;
+				word-break: break-all;
+			}
+			.calc .scr .ex {
+				font-size: 12px;
+				color: var(--muted);
+				min-height: 16px;
+			}
+			.calc .scr .rs {
+				font-size: 20px;
+				font-weight: 700;
+			}
+			.keys {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				gap: 6px;
+				margin-top: 10px;
+			}
+			.keys button {
+				border: 1px solid var(--line);
+				background: var(--bg);
+				border-radius: 6px;
+				padding: 9px 0;
+				font-family: var(--f-mono);
+				font-size: 14px;
+			}
+			.keys button.op {
+				background: var(--accent-soft);
+			}
+			.keys button.eq {
+				background: var(--accent);
+				color: var(--accent-ink);
+				border-color: var(--accent);
+			}
+			@media (prefers-reduced-motion: reduce) {
+				* {
+					transition: none !important;
+				}
+			}
+		</style>
+
+		<div class="wrap">
+			<!-- HOME -->
+			<section id="v-home">
+				<div class="hero">
+					<span class="label"
+						>Union Bank Tech Bootcamp · online assessment practice</span
+					>
+					<h1>Bootcamp Assessment Prep</h1>
+					<p
+						class="muted"
+						style="max-width: 62ch">
+						An original practice bank modelled on the format in your invitation
+						email: 60 questions, 75 minutes, seven sections taken in order, one
+						attempt. These are not the real exam questions; they train the same
+						skills.
+					</p>
+					<div class="facts">
+						<span
+							class="fact mono"
+							id="f-total"
+							>— questions in bank</span
+						>
+						<span class="fact">60 Q / 75 min mock</span>
+						<span class="fact">≈ 75 s per question</span>
+						<span class="fact">Calculator included</span>
+					</div>
+				</div>
+
+				<div class="stack">
+					<div class="modes">
+						<div class="mode lead">
+							<span class="label">Timed</span>
+							<h2>Full mock exam</h2>
+							<p class="muted">
+								A fresh random set of 60 questions each attempt. Sections run in
+								order and lock once you move on, like the real test.
+							</p>
+							<div class="row">
+								<button
+									class="btn primary"
+									id="start-mock">
+									Start mock exam
+								</button>
+							</div>
+							<div
+								class="history muted"
+								id="history"></div>
+						</div>
+						<div class="mode">
+							<span class="label">Untimed</span>
+							<h2>Practice by section</h2>
+							<p class="muted">
+								Instant feedback and an explanation after every answer.
+							</p>
+							<div
+								class="secs"
+								id="sec-list"></div>
+						</div>
+					</div>
+
+					<div class="tips">
+						<h3>Before Tuesday 6 Oct, 12pm</h3>
+						<ul>
+							<li>
+								Your window closes Wednesday 7 Oct at 12pm (Nigerian time).
+								Start early so a network problem doesn't cost you the attempt.
+							</li>
+							<li>
+								Budget about 75 seconds a question. If one is eating time, pick
+								your best guess and move on; there's usually no penalty for
+								guessing.
+							</li>
+							<li>
+								You can't return to a finished section, so check flagged
+								questions before moving on.
+							</li>
+							<li>
+								Read the proctoring rules in the email carefully: webcam, quiet
+								room, stable internet, no second screen or phone.
+							</li>
+							<li>
+								For verbal "True / False / Cannot say" items, judge only by the
+								passage, not by what you know.
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- EXAM -->
+			<section
+				id="v-exam"
+				hidden>
+				<div class="bar">
+					<div class="bar-in">
+						<div>
+							<div
+								class="label"
+								id="ex-secno">
+								Section 1 of 7
+							</div>
+							<h3 id="ex-secname">Tech</h3>
+						</div>
+						<div class="row">
+							<button
+								class="btn"
+								id="calc-toggle"
+								aria-pressed="false">
+								Calculator
+							</button>
+							<div
+								class="clock"
+								id="clock"
+								aria-live="off">
+								75:00
+							</div>
+						</div>
+					</div>
+					<div class="track">
+						<i
+							id="ex-track"
+							style="width: 0"></i>
+					</div>
+				</div>
+				<div class="stack">
+					<div
+						class="row"
+						style="justify-content: space-between">
+						<span
+							class="muted mono"
+							id="ex-count"
+							>Question 1 of 60</span
+						>
+						<button
+							class="btn flagbtn"
+							id="flag">
+							Flag for review
+						</button>
+					</div>
+					<div
+						class="dots"
+						id="dots"></div>
+					<div
+						class="card"
+						id="ex-card"></div>
+					<div
+						class="confirm"
+						id="confirm"
+						hidden>
+						<strong id="confirm-title">Finish this section?</strong>
+						<span id="confirm-text"></span>
+						<div class="row">
+							<button
+								class="btn"
+								id="confirm-no">
+								Keep working</button
+							><button
+								class="btn primary"
+								id="confirm-yes">
+								Continue
+							</button>
+						</div>
+					</div>
+					<div class="nav">
+						<button
+							class="btn"
+							id="prev">
+							Previous
+						</button>
+						<button
+							class="btn primary"
+							id="next">
+							Next
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- RESULTS -->
+			<section
+				id="v-results"
+				hidden>
+				<div
+					class="stack"
+					style="padding-block: 32px 0">
+					<span class="label">Mock exam result</span>
+					<div class="score">
+						<span
+							class="big mono"
+							id="r-pct"
+							>0%</span
+						><span
+							class="muted"
+							id="r-sub"></span>
+					</div>
+					<div class="card">
+						<h3>By section</h3>
+						<div
+							class="sres"
+							id="r-secs"></div>
+						<p
+							class="muted"
+							id="r-advice"></p>
+					</div>
+					<div
+						class="row"
+						style="justify-content: space-between">
+						<h2>Review answers</h2>
+						<div class="row">
+							<button
+								class="btn"
+								id="r-filter"
+								aria-pressed="false">
+								Show mistakes only
+							</button>
+						</div>
+					</div>
+					<div
+						class="rev"
+						id="r-list"></div>
+					<div class="row">
+						<button
+							class="btn primary"
+							id="r-home">
+							Back to start
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- PRACTICE -->
+			<section
+				id="v-practice"
+				hidden>
+				<div class="bar">
+					<div class="bar-in">
+						<div>
+							<div class="label">Practice</div>
+							<h3 id="p-name">Tech</h3>
+						</div>
+						<div class="row">
+							<span
+								class="mono"
+								id="p-score"
+								>0 / 0</span
+							>
+							<button
+								class="btn"
+								id="p-calc">
+								Calculator
+							</button>
+							<button
+								class="btn"
+								id="p-end">
+								End
+							</button>
+						</div>
+					</div>
+					<div class="track">
+						<i
+							id="p-track"
+							style="width: 0"></i>
+					</div>
+				</div>
+				<div class="stack">
+					<span
+						class="muted mono"
+						id="p-count"></span>
+					<div
+						class="card"
+						id="p-card"></div>
+					<div class="nav">
+						<span></span
+						><button
+							class="btn primary"
+							id="p-next"
+							disabled>
+							Next question
+						</button>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div
+			class="calc"
+			id="calc"
+			hidden>
+			<div
+				class="row"
+				style="justify-content: space-between; margin-bottom: 8px">
+				<span class="label">Calculator</span
+				><button
+					class="btn"
+					id="calc-close"
+					style="padding: 2px 10px">
+					Close
+				</button>
+			</div>
+			<div class="scr">
+				<div
+					class="ex"
+					id="c-ex"></div>
+				<div
+					class="rs"
+					id="c-rs">
+					0
+				</div>
+			</div>
+			<div
+				class="keys"
+				id="c-keys"></div>
+		</div>
+
+		<script>
+			const TF = ['True', 'False', 'Cannot say'];
+			const PASSAGES = {
+				mob: 'Mobile banking adoption in Nigeria has grown sharply over the past decade, driven by wider smartphone ownership and the expansion of agent networks. However, a significant share of adults in rural areas still rely on cash for daily transactions, citing poor network coverage and low trust in digital channels. Banks that invested in USSD services, which work on basic phones without internet access, reported faster customer growth in these regions than banks that relied only on smartphone apps.',
+				sec: 'Most data breaches at financial institutions involve a human element, such as an employee clicking a malicious link or misconfiguring a system. For this reason, security experts argue that technical controls alone are insufficient. Regular staff training, combined with simulated phishing exercises, has been shown to reduce click rates on malicious emails. However, the effect of training tends to fade within months unless it is reinforced.',
+				rev: 'Quarterly revenue of a fintech start-up (₦ millions)\nQ1: 40    Q2: 50    Q3: 45    Q4: 65',
+			};
+			// item: [question, options, correctIndex, explanation, passageKey?]
+			const SECTIONS = [
+				{
+					id: 'tech',
+					name: 'Tech',
+					mock: 10,
+					blurb: 'Programming, data, networks, security',
+					items: [
+						[
+							'What is the time complexity of binary search on a sorted array of n elements?',
+							['O(n)', 'O(log n)', 'O(n log n)', 'O(1)'],
+							1,
+							'Each step halves the search range, so it takes about log₂ n steps.',
+						],
+						[
+							'Which data structure follows Last-In, First-Out (LIFO)?',
+							['Queue', 'Stack', 'Linked list', 'Hash table'],
+							1,
+							'A stack removes the most recently added item first (push/pop). A queue is First-In, First-Out.',
+						],
+						[
+							'An HTTP 404 status code means:',
+							[
+								'Server error',
+								'Unauthorised',
+								'Resource not found',
+								'Request succeeded',
+							],
+							2,
+							'404 = Not Found. 200 = OK, 401 = Unauthorised, 500 = Internal Server Error.',
+						],
+						[
+							'Which SQL clause filters results after aggregation with GROUP BY?',
+							['WHERE', 'HAVING', 'ORDER BY', 'DISTINCT'],
+							1,
+							'WHERE filters rows before grouping; HAVING filters groups after aggregates such as SUM() or COUNT() are calculated.',
+						],
+						[
+							'Which statement about a primary key is true?',
+							[
+								'It can contain duplicate values',
+								'It can be NULL',
+								'It uniquely identifies each row and cannot be NULL',
+								'A table can have several primary keys',
+							],
+							2,
+							'A primary key is unique and NOT NULL. A table has one primary key, although it can span several columns (a composite key).',
+						],
+						[
+							'What is the default port for HTTPS?',
+							['80', '21', '443', '8080'],
+							2,
+							'HTTPS uses 443, plain HTTP uses 80 and FTP uses 21.',
+						],
+						[
+							'Which of these is NOT one of the core principles of object-oriented programming?',
+							['Encapsulation', 'Inheritance', 'Polymorphism', 'Compilation'],
+							3,
+							'The four pillars are encapsulation, abstraction, inheritance and polymorphism. Compilation is a build step.',
+						],
+						[
+							'In Python, what does print(7 // 2) output?',
+							['3.5', '3', '4', '1'],
+							1,
+							'// is floor division: 7 ÷ 2 = 3.5, rounded down to 3. (7 % 2 would give 1.)',
+						],
+						[
+							'Which Git command creates a local copy of a remote repository?',
+							['git init', 'git clone', 'git commit', 'git push'],
+							1,
+							'git clone downloads an existing remote repository. git init creates a new empty one.',
+						],
+						[
+							"A customer receives an email that looks like it is from their bank, asking them to 'verify' their login details through a link. This is:",
+							['Phishing', 'A DDoS attack', 'SQL injection', 'Ransomware'],
+							0,
+							'Phishing uses deceptive messages to trick people into giving up credentials or clicking malicious links.',
+						],
+						[
+							'Which of these is a NoSQL database?',
+							['MySQL', 'PostgreSQL', 'MongoDB', 'Oracle Database'],
+							2,
+							'MongoDB is a document database. The others are relational (SQL) databases.',
+						],
+						[
+							'In which cloud model does the provider manage the servers, operating system and runtime while you deploy only your application code?',
+							['IaaS', 'PaaS', 'SaaS', 'On-premises'],
+							1,
+							'PaaS (Platform as a Service) handles infrastructure and runtime. IaaS gives you raw virtual machines; SaaS is finished software you just use.',
+						],
+						[
+							'What does API stand for?',
+							[
+								'Application Programming Interface',
+								'Automated Program Integration',
+								'Applied Protocol Interface',
+								'Application Process Instruction',
+							],
+							0,
+							'An API defines how software components talk to each other, for example a payments API.',
+						],
+						[
+							'Convert binary 1011 to decimal.',
+							['9', '10', '11', '13'],
+							2,
+							'1×8 + 0×4 + 1×2 + 1×1 = 11.',
+						],
+						[
+							'Which OSI layer is responsible for routing packets between networks?',
+							[
+								'Data Link (Layer 2)',
+								'Network (Layer 3)',
+								'Transport (Layer 4)',
+								'Application (Layer 7)',
+							],
+							1,
+							'The Network layer (IP) handles logical addressing and routing. The Transport layer (TCP/UDP) handles end-to-end delivery.',
+						],
+						[
+							'In JavaScript, what does typeof null return?',
+							['"null"', '"undefined"', '"object"', '"number"'],
+							2,
+							'A long-standing quirk of JavaScript: typeof null is "object".',
+						],
+						[
+							'Two-factor authentication is strongest when it combines:',
+							[
+								'Two different passwords',
+								'A password and a security question',
+								'Something you know and something you have, such as an OTP device',
+								'A username and a password',
+							],
+							2,
+							'Real 2FA uses two different categories: knowledge, possession or biometrics. Two passwords, or a password plus a security question, are the same category.',
+						],
+						[
+							'Which SQL join returns all rows from the left table and only the matching rows from the right table?',
+							['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'CROSS JOIN'],
+							1,
+							'LEFT JOIN keeps every row from the left table and fills NULLs where the right table has no match.',
+						],
+						[
+							'In Scrum, the fixed time-box (usually 1–4 weeks) in which a team delivers a working increment is called a:',
+							['Backlog', 'Sprint', 'Epic', 'Stand-up'],
+							1,
+							'A sprint is the iteration. The backlog lists the work; the stand-up is the daily meeting.',
+						],
+						[
+							'Which type of memory loses its contents when the power is switched off?',
+							['ROM', 'SSD', 'RAM', 'Hard disk'],
+							2,
+							'RAM is volatile. ROM, SSDs and hard disks keep their data without power.',
+						],
+						[
+							'A ₦50,000 transfer debits Account A, but the system crashes before crediting Account B. The database rolls back the whole transfer. Which ACID property is this?',
+							['Atomicity', 'Consistency', 'Isolation', 'Durability'],
+							0,
+							'Atomicity means a transaction happens completely or not at all.',
+						],
+						[
+							'What is the key difference between hashing and encryption?',
+							[
+								'Hashing is reversible; encryption is not',
+								'Hashing is one-way; encrypted data can be decrypted with a key',
+								'They are the same thing',
+								'Encryption is only used for passwords',
+							],
+							1,
+							'A hash (e.g. SHA-256) cannot be reversed, which is why passwords are stored as hashes. Encrypted data can be decrypted with the right key.',
+						],
+						[
+							'How many bits are in an IPv4 address?',
+							['16', '32', '64', '128'],
+							1,
+							'IPv4 addresses are 32 bits (e.g. 192.168.0.1). IPv6 addresses are 128 bits.',
+						],
+						[
+							'What does this Python code print?\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(len(x))',
+							['3', '4', 'An error', '1'],
+							1,
+							'y and x refer to the same list object, so appending through y also changes x. The length is 4.',
+						],
+						[
+							'Which HTTP method is conventionally used to create a new resource in a REST API?',
+							['GET', 'POST', 'DELETE', 'HEAD'],
+							1,
+							'POST creates, GET reads, PUT/PATCH update and DELETE removes.',
+						],
+					],
+				},
+				{
+					id: 'verbal',
+					name: 'Verbal Reasoning',
+					mock: 9,
+					blurb: 'Vocabulary, grammar, passages',
+					items: [
+						[
+							'Choose the word closest in meaning to METICULOUS.',
+							['Careless', 'Thorough', 'Hasty', 'Generous'],
+							1,
+							'Meticulous means showing great attention to detail.',
+						],
+						[
+							'Choose the word most opposite in meaning to TRANSPARENT.',
+							['Clear', 'Opaque', 'Honest', 'Visible'],
+							1,
+							'Opaque means impossible to see through.',
+						],
+						[
+							'Choose the word closest in meaning to MITIGATE.',
+							['Worsen', 'Ignore', 'Lessen', 'Measure'],
+							2,
+							'To mitigate is to make something less severe, e.g. mitigating a risk.',
+						],
+						[
+							'Choose the word closest in meaning to UBIQUITOUS.',
+							['Rare', 'Omnipresent', 'Unique', 'Ambiguous'],
+							1,
+							'Ubiquitous means found everywhere.',
+						],
+						[
+							'Choose the word most opposite in meaning to SCARCE.',
+							['Limited', 'Rare', 'Abundant', 'Expensive'],
+							2,
+							'Scarce means in short supply; abundant means plentiful.',
+						],
+						[
+							'Choose the word closest in meaning to PRAGMATIC.',
+							['Practical', 'Idealistic', 'Dramatic', 'Stubborn'],
+							0,
+							'Pragmatic means dealing with things sensibly and realistically.',
+						],
+						[
+							'Which sentence is grammatically correct?',
+							[
+								'Each of the applicants are required to submit a CV.',
+								'Each of the applicants is required to submit a CV.',
+								'Each of the applicant are required to submit a CV.',
+								'Each of the applicants were required to submits a CV.',
+							],
+							1,
+							"'Each' is singular, so the verb is 'is'.",
+						],
+						[
+							'Which sentence is correct?',
+							[
+								'Between you and I, the deadline is unrealistic.',
+								'Between you and me, the deadline is unrealistic.',
+								'Between yourself and I, the deadline is unrealistic.',
+								'Between you and myself, the deadline is unrealistic.',
+							],
+							1,
+							"'Between' is a preposition, so it takes the object pronoun 'me'.",
+						],
+						[
+							'Which word is spelled incorrectly?',
+							['Accommodate', 'Occurrence', 'Embarrass', 'Definately'],
+							3,
+							"The correct spelling is 'definitely'.",
+						],
+						[
+							'Complete the analogy. Author : Book :: Developer : ?',
+							['Computer', 'Software', 'Keyboard', 'Office'],
+							1,
+							'An author creates a book; a developer creates software.',
+						],
+						[
+							'Complete the analogy. Happy : Ecstatic :: Sad : ?',
+							['Cheerful', 'Devastated', 'Tired', 'Calm'],
+							1,
+							'Ecstatic is an extreme degree of happy; devastated is an extreme degree of sad.',
+						],
+						[
+							"Fill the gap: Although the bank's revenue increased, its profits ____ because operating costs rose even faster.",
+							['soared', 'declined', 'doubled', 'stabilised'],
+							1,
+							"'Although' signals a contrast, and costs rising faster than revenue means profits fell.",
+						],
+						[
+							'Fill the gap: The new policy was widely ____ by staff, who complained that it was unclear and rushed.',
+							['praised', 'criticised', 'endorsed', 'celebrated'],
+							1,
+							'The complaints show a negative reaction.',
+						],
+						[
+							'USSD services need an internet connection to work.',
+							TF,
+							1,
+							'The passage says USSD works on basic phones without internet access.',
+							'mob',
+						],
+						[
+							'Smartphone ownership is the only reason mobile banking has grown in Nigeria.',
+							TF,
+							1,
+							'The passage also names the expansion of agent networks.',
+							'mob',
+						],
+						[
+							'Some adults in rural areas do not trust digital banking channels.',
+							TF,
+							0,
+							"'Low trust in digital channels' is given as a reason rural adults still use cash.",
+							'mob',
+						],
+						[
+							'Most adults in rural Nigeria do not own a phone.',
+							TF,
+							2,
+							'The passage gives no figures on phone ownership, so you cannot say.',
+							'mob',
+						],
+						[
+							'Technical security controls are unnecessary in banks.',
+							TF,
+							1,
+							'The passage says technical controls alone are insufficient, which is not the same as unnecessary.',
+							'sec',
+						],
+						[
+							'Most data breaches at financial institutions involve a human element.',
+							TF,
+							0,
+							'This is stated in the first sentence.',
+							'sec',
+						],
+						[
+							'Once delivered, the effect of security training lasts indefinitely.',
+							TF,
+							1,
+							'The passage says the effect fades within months unless reinforced.',
+							'sec',
+						],
+						[
+							'Banks spend more on staff training than on technical controls.',
+							TF,
+							2,
+							'Spending is never mentioned, so you cannot say.',
+							'sec',
+						],
+					],
+				},
+				{
+					id: 'num',
+					name: 'Numerical Reasoning',
+					mock: 9,
+					blurb: 'Percentages, ratios, interest, data',
+					items: [
+						[
+							'A loan of ₦500,000 attracts simple interest of 12% per year. What is the total interest after 3 years?',
+							['₦60,000', '₦150,000', '₦180,000', '₦202,464'],
+							2,
+							'Simple interest = P × R × T = 500,000 × 0.12 × 3 = ₦180,000.',
+						],
+						[
+							'₦100,000 is saved at 10% per year, compounded annually. What is the balance after 2 years?',
+							['₦120,000', '₦121,000', '₦110,000', '₦122,100'],
+							1,
+							'100,000 × 1.1² = 100,000 × 1.21 = ₦121,000.',
+						],
+						[
+							'The price of a data plan rises from ₦2,400 to ₦3,000. What is the percentage increase?',
+							['20%', '24%', '25%', '30%'],
+							2,
+							'Increase = 600. 600 ÷ 2,400 = 0.25 = 25%. Always divide by the original value.',
+						],
+						[
+							'A laptop is discounted by 20%, then the reduced price is cut by a further 10%. What is the total discount?',
+							['30%', '28%', '32%', '25%'],
+							1,
+							'0.8 × 0.9 = 0.72 of the original price, so the total discount is 28%, not 30%.',
+						],
+						[
+							'What is the average of 12, 15, 18, 21 and 24?',
+							['17', '18', '19', '20'],
+							1,
+							'Sum = 90, and 90 ÷ 5 = 18.',
+						],
+						[
+							'₦84,000 is shared between two partners in the ratio 3 : 4. How much is the larger share?',
+							['₦36,000', '₦42,000', '₦48,000', '₦56,000'],
+							2,
+							'There are 7 parts, each worth 12,000. The larger share is 4 × 12,000 = ₦48,000.',
+						],
+						[
+							'If $1 = ₦1,500, how many dollars is ₦270,000?',
+							['$150', '$180', '$200', '$405'],
+							1,
+							'270,000 ÷ 1,500 = 180.',
+						],
+						[
+							'6 developers can finish a project in 10 days. At the same rate, how many days would 4 developers take?',
+							['12', '15', '6.7', '20'],
+							1,
+							'Total work = 6 × 10 = 60 developer-days, and 60 ÷ 4 = 15 days.',
+						],
+						[
+							'A car travels 180 km in 2.5 hours. What is its average speed?',
+							['65 km/h', '70 km/h', '72 km/h', '75 km/h'],
+							2,
+							'180 ÷ 2.5 = 72 km/h.',
+						],
+						[
+							"What percentage of the year's total revenue was earned in Q4?",
+							['30%', '32.5%', '35%', '65%'],
+							1,
+							'Total = 40 + 50 + 45 + 65 = 200. 65 ÷ 200 = 32.5%.',
+							'rev',
+						],
+						[
+							'What was the percentage change in revenue from Q2 to Q3?',
+							['−5%', '−10%', '+10%', '−11.1%'],
+							1,
+							'(45 − 50) ÷ 50 = −0.10, a 10% fall.',
+							'rev',
+						],
+						[
+							"If revenue grows by 20% from Q4 in the next quarter, what will next quarter's revenue be?",
+							['₦75m', '₦78m', '₦80m', '₦85m'],
+							1,
+							'65 × 1.2 = ₦78 million.',
+							'rev',
+						],
+						[
+							'VAT of 7.5% is added to a ₦20,000 bill. What is the total?',
+							['₦21,000', '₦21,500', '₦22,500', '₦20,750'],
+							1,
+							'7.5% of 20,000 = 1,500, so the total is ₦21,500.',
+						],
+						[
+							'If 3x + 7 = 31, what is x?',
+							['6', '7', '8', '9'],
+							2,
+							'3x = 24, so x = 8.',
+						],
+						[
+							'A bag holds 5 red, 3 blue and 2 green balls. What is the probability of picking a red ball at random?',
+							['1/5', '1/3', '1/2', '5/8'],
+							2,
+							'5 red out of 10 balls = 5/10 = 1/2.',
+						],
+						[
+							'A phone costs ₦8,000 to make and sells for ₦10,000. What is the profit as a percentage of cost?',
+							['20%', '25%', '2%', '80%'],
+							1,
+							'Profit = 2,000, and 2,000 ÷ 8,000 = 25%.',
+						],
+						[
+							'Out of a ₦250,000 salary, 40% goes on rent and 25% of what remains goes on transport. How much is spent on transport?',
+							['₦62,500', '₦37,500', '₦100,000', '₦50,000'],
+							1,
+							'After rent, 150,000 remains. 25% of 150,000 = ₦37,500.',
+						],
+						[
+							'What is 15% of 40% of 2,000?',
+							['80', '100', '120', '300'],
+							2,
+							'40% of 2,000 = 800, and 15% of 800 = 120.',
+						],
+						[
+							'The mean of four numbers is 25. Three of them are 20, 30 and 22. What is the fourth?',
+							['25', '28', '30', '33'],
+							1,
+							'The total must be 100. 100 − 72 = 28.',
+						],
+						[
+							"An app's users grew from 80,000 to 92,000. What is the growth rate?",
+							['12%', '13%', '15%', '18%'],
+							2,
+							'12,000 ÷ 80,000 = 0.15 = 15%.',
+						],
+						[
+							'A bank charges ₦50 per transfer plus 0.5% of any amount above ₦10,000. What is the fee for a ₦30,000 transfer?',
+							['₦100', '₦150', '₦200', '₦250'],
+							1,
+							'0.5% of (30,000 − 10,000) = 100, plus 50 = ₦150.',
+						],
+						[
+							"A wallet app's user base doubles every 3 months. Starting from 5,000 users, how many will it have after 1 year?",
+							['40,000', '60,000', '80,000', '160,000'],
+							2,
+							'One year is 4 doubling periods: 5,000 × 2⁴ = 80,000.',
+						],
+					],
+				},
+				{
+					id: 'cog',
+					name: 'Cognitive Reasoning',
+					mock: 8,
+					blurb: 'Series, codes, directions, logic',
+					items: [
+						[
+							'What comes next? 2, 6, 12, 20, 30, ?',
+							['40', '42', '44', '36'],
+							1,
+							'The gaps are 4, 6, 8, 10, so the next gap is 12: 30 + 12 = 42. (Each term is n × (n+1).)',
+						],
+						[
+							'What comes next? 3, 9, 27, 81, ?',
+							['162', '243', '324', '108'],
+							1,
+							'Each term is multiplied by 3.',
+						],
+						[
+							'What comes next? 1, 1, 2, 3, 5, 8, ?',
+							['11', '12', '13', '15'],
+							2,
+							'Fibonacci: each term is the sum of the two before it. 5 + 8 = 13.',
+						],
+						[
+							'What comes next? A, C, F, J, O, ?',
+							['T', 'U', 'V', 'S'],
+							1,
+							'The letter gaps are +2, +3, +4, +5, so the next is +6. O (15) + 6 = U (21).',
+						],
+						[
+							'If CAT is coded as DBU, how is DOG coded?',
+							['EPH', 'CNF', 'EPG', 'DPH'],
+							0,
+							'Each letter moves forward by one: D→E, O→P, G→H.',
+						],
+						[
+							'If BANK = 2-1-14-11, what is CASH?',
+							['3-1-19-8', '3-1-18-8', '3-2-19-8', '4-1-19-8'],
+							0,
+							'Each letter is its position in the alphabet: C=3, A=1, S=19, H=8.',
+						],
+						[
+							'Which number is the odd one out? 121, 144, 169, 196, 210',
+							['144', '169', '196', '210'],
+							3,
+							'All the others are perfect squares (11², 12², 13², 14²).',
+						],
+						[
+							'Bayo walks 5 km north, turns right and walks 3 km, then turns right again and walks 5 km. Where is he now relative to his start?',
+							['3 km west', '3 km east', '5 km south', '8 km east'],
+							1,
+							'North 5, east 3, south 5: he ends 3 km east of where he started.',
+						],
+						[
+							"Pointing to a man, Ada says: 'His mother is the only daughter of my mother.' How is the man related to Ada?",
+							['Brother', 'Nephew', 'Son', 'Cousin'],
+							2,
+							"The only daughter of Ada's mother is Ada herself, so the man's mother is Ada. He is her son.",
+						],
+						[
+							'What is the angle between the hour and minute hands of a clock at 3:30?',
+							['90°', '75°', '60°', '105°'],
+							1,
+							'Minute hand at 180°. Hour hand at 90° + 15° (half of the 30° between 3 and 4) = 105°. 180 − 105 = 75°.',
+						],
+						[
+							'In a queue, Tunde is ahead of Bola, Bola is ahead of Chidi, Dayo is behind Chidi and Emeka is ahead of Tunde. Who is in the middle?',
+							['Tunde', 'Bola', 'Chidi', 'Emeka'],
+							1,
+							'The order is Emeka, Tunde, Bola, Chidi, Dayo. Bola is third of five.',
+						],
+						[
+							'What comes next? 7, 10, 8, 11, 9, 12, ?',
+							['10', '13', '11', '14'],
+							0,
+							'The pattern alternates +3 then −2. 12 − 2 = 10.',
+						],
+						[
+							'If the day after tomorrow is Friday, what day was yesterday?',
+							['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+							1,
+							'Today is Wednesday, so yesterday was Tuesday.',
+						],
+						[
+							'What comes next? Z, X, V, T, ?',
+							['S', 'R', 'Q', 'P'],
+							1,
+							'Skip one letter each time going backwards.',
+						],
+						[
+							'Which word can be made using only letters from TECHNOLOGY?',
+							['CLOTHING', 'TOUCHY', 'COLONY', 'HONEST'],
+							2,
+							'COLONY uses C, O, L, O, N, Y, all available. The others need I, U or S.',
+						],
+						[
+							'What comes next? 2, 5, 11, 23, 47, ?',
+							['94', '95', '96', '71'],
+							1,
+							'Each term is (previous × 2) + 1: 47 × 2 + 1 = 95.',
+						],
+						[
+							'What comes next? 8, 27, 64, 125, ?',
+							['150', '196', '216', '256'],
+							2,
+							'These are cubes: 2³, 3³, 4³, 5³, so next is 6³ = 216.',
+						],
+						[
+							'1 January 2026 was a Thursday. What day of the week was 1 February 2026?',
+							['Saturday', 'Sunday', 'Monday', 'Friday'],
+							1,
+							'January has 31 days. 31 = 4 weeks + 3 days, and Thursday + 3 = Sunday.',
+						],
+						[
+							'Ada is 7th from the top and 26th from the bottom of her class. How many students are in the class?',
+							['32', '33', '31', '34'],
+							0,
+							'7 + 26 − 1 = 32. Subtract 1 because Ada is counted twice.',
+						],
+						[
+							'If ✦ means ×, ◆ means +, and ● means −, what is 6 ✦ 3 ◆ 4 ● 2?',
+							['18', '20', '26', '24'],
+							1,
+							'6 × 3 + 4 − 2 = 18 + 4 − 2 = 20 (multiplication first).',
+						],
+					],
+				},
+				{
+					id: 'abs',
+					name: 'Abstract & Spatial Reasoning',
+					mock: 8,
+					blurb: 'Patterns, rotation, mirrors, 3D',
+					items: [
+						[
+							'What comes next?  ▲ ■ ● ▲ ■ ● ▲ ?',
+							['▲', '■', '●', '◆'],
+							1,
+							'The pattern repeats every three shapes: ▲ ■ ●.',
+						],
+						[
+							'An arrow rotates 90° clockwise at each step.  → ↓ ← ?',
+							['→', '↑', '↓', '↗'],
+							1,
+							'Right, down, left, then up.',
+						],
+						[
+							'An arrow rotates 45° clockwise at each step.  ↑ ↗ → ↘ ?',
+							['↓', '←', '↙', '↑'],
+							0,
+							'After ↘ (south-east), 45° more clockwise points straight down.',
+						],
+						[
+							'What is the mirror image of the lowercase letter b in a vertical mirror (left–right flip)?',
+							['d', 'p', 'q', 'b'],
+							0,
+							'Flipping left to right turns b into d. Flipping top to bottom would give p.',
+						],
+						[
+							'On a standard die, opposite faces add up to 7. Which number is opposite 2?',
+							['4', '5', '6', '3'],
+							1,
+							'2 + 5 = 7.',
+						],
+						[
+							'A 3×3×3 cube is painted on every face and then cut into 27 small cubes. How many small cubes have exactly two painted faces?',
+							['8', '12', '6', '24'],
+							1,
+							'Two-face cubes sit on the edges, excluding the corners. A cube has 12 edges with 1 such cube each = 12.',
+						],
+						[
+							'In the same painted 3×3×3 cube, how many small cubes have no paint at all?',
+							['0', '1', '6', '8'],
+							1,
+							'Only the single centre cube is hidden from every face.',
+						],
+						[
+							'Sequence: triangle (3 sides), square (4), pentagon (5), ? ',
+							['Circle', 'Hexagon', 'Octagon', 'Triangle'],
+							1,
+							'Each shape adds one side. A hexagon has 6.',
+						],
+						[
+							'Complete the grid.\nRow 1: ●   ●●   ●●●\nRow 2: ■   ■■   ■■■\nRow 3: ▲   ▲▲   ?',
+							['▲', '▲▲', '▲▲▲', '■■■'],
+							2,
+							'Each row holds one shape repeated 1, 2 and 3 times.',
+						],
+						[
+							'A square sheet of paper is folded in half, then in half again, and one hole is punched through all layers. How many holes are there when unfolded?',
+							['2', '3', '4', '8'],
+							2,
+							'Two folds give 4 layers, so one punch makes 4 holes.',
+						],
+						[
+							'Which capital letter looks the same in a vertical mirror (left–right flip)?',
+							['F', 'R', 'A', 'L'],
+							2,
+							'A is symmetrical about its vertical axis.',
+						],
+						[
+							'Which capital letter looks the same when rotated 180°?',
+							['S', 'E', 'R', 'B'],
+							0,
+							'S has rotational symmetry of order 2. (So do N, Z, H, O, X and I.)',
+						],
+						[
+							'What comes next?  ■□□□  □■□□  □□■□  ?',
+							['■□□□', '□□□■', '□■□□', '■■□□'],
+							1,
+							'The filled square moves one place to the right each step.',
+						],
+						[
+							'A square has both diagonals drawn. How many triangles can be counted in total?',
+							['4', '6', '8', '10'],
+							2,
+							'4 small triangles, plus 4 larger triangles each made of two adjacent small ones = 8.',
+						],
+						[
+							'How many squares of any size are on a 3×3 grid?',
+							['9', '10', '13', '14'],
+							3,
+							'9 (1×1) + 4 (2×2) + 1 (3×3) = 14.',
+						],
+						[
+							'Dot pattern: 1, 3, 6, 10, ? dots',
+							['13', '14', '15', '16'],
+							2,
+							'Triangular numbers: add 2, 3, 4, then 5. 10 + 5 = 15.',
+						],
+						[
+							'Which pair is the odd one out?  ↑↓   ←→   ↗↙   ↑→',
+							['↑↓', '←→', '↗↙', '↑→'],
+							3,
+							'The others point in exactly opposite directions; ↑→ is a right angle.',
+						],
+						[
+							'Shapes alternate colour and add one side: black triangle, white square, black pentagon, ?',
+							[
+								'Black hexagon',
+								'White hexagon',
+								'White pentagon',
+								'Black square',
+							],
+							1,
+							'The next shape has 6 sides and is white.',
+						],
+						[
+							'A cube net is laid out as a cross. The vertical strip from top to bottom is A, C, E, F. B is attached to the left of C and D to the right of C. Which face is opposite C?',
+							['A', 'E', 'F', 'B'],
+							2,
+							'In a strip of four faces, the 1st and 3rd are opposite, and so are the 2nd and 4th. C (2nd) is opposite F (4th). B is opposite D.',
+						],
+						[
+							'● is to ○ as ■ is to ?',
+							['▲', '□', '●', '■'],
+							1,
+							'A filled shape becomes the same shape outlined.',
+						],
+						[
+							'A clock reads 9:00. What time does its reflection in a vertical mirror appear to show?',
+							['9:00', '3:00', '6:00', '12:00'],
+							1,
+							'Mirror time = 12:00 − actual time. 12:00 − 9:00 = 3:00.',
+						],
+					],
+				},
+				{
+					id: 'crit',
+					name: 'Critical Thinking & Analysis',
+					mock: 9,
+					blurb: 'Syllogisms, arguments, deduction',
+					items: [
+						[
+							'All analysts are graduates. Some graduates are engineers. Does it follow that some analysts are engineers?',
+							[
+								'Yes, definitely',
+								'No, it does not necessarily follow',
+								'Yes, all analysts are engineers',
+								'No analysts are engineers',
+							],
+							1,
+							'The engineers who are graduates might not include any analysts. The overlap is not guaranteed.',
+						],
+						[
+							'Some managers are leaders. All leaders are communicators. Which conclusion must be true?',
+							[
+								'All managers are communicators',
+								'Some managers are communicators',
+								'No managers are communicators',
+								'All communicators are managers',
+							],
+							1,
+							'The managers who are leaders are also communicators, so at least some managers are communicators.',
+						],
+						[
+							'If it rains, the outdoor event is cancelled. The event was not cancelled. What can you conclude?',
+							[
+								'It rained',
+								'It did not rain',
+								'The event was indoors',
+								'Nothing can be concluded',
+							],
+							1,
+							'If rain always causes cancellation, no cancellation means no rain (modus tollens).',
+						],
+						[
+							'If it rains, the outdoor event is cancelled. The event was cancelled. What can you conclude?',
+							[
+								'It definitely rained',
+								'It did not rain',
+								'It may or may not have rained',
+								'The event will be rescheduled',
+							],
+							2,
+							'The event could have been cancelled for another reason. Concluding that it rained is the fallacy of affirming the consequent.',
+						],
+						[
+							'No employee who failed the security training has system access. Musa has system access. Which must be true?',
+							[
+								'Musa passed the training with distinction',
+								'Musa did not fail the security training',
+								'Musa is a manager',
+								'Musa has never taken the training',
+							],
+							1,
+							"Anyone who failed has no access, so Musa cannot have failed. He might be exempt, which is why 'passed with distinction' and 'never taken' don't necessarily follow.",
+						],
+						[
+							"'Everyone is using this investment app, so it must be safe.' What is the flaw in this argument?",
+							[
+								'Appeal to popularity',
+								'Circular reasoning',
+								'False dilemma',
+								'Straw man',
+							],
+							0,
+							'Popularity is not evidence of safety. This is the bandwagon fallacy.',
+						],
+						[
+							"'Customers who use mobile banking have higher balances, so mobile banking makes people save more.' What is the main weakness?",
+							[
+								'The sample is too large',
+								'It confuses correlation with causation',
+								'Mobile banking is not popular',
+								'It uses too many numbers',
+							],
+							1,
+							'Wealthier customers may simply be more likely to adopt mobile banking. The link could run the other way or come from a third factor.',
+						],
+						[
+							"Claim: 'Introducing flexible hours will increase staff productivity.' Which statement most strengthens this claim?",
+							[
+								'Staff say they like flexible hours',
+								'A pilot in two branches showed 15% higher output after flexible hours started, with no change elsewhere',
+								'Other companies have tried flexible hours',
+								'Flexible hours are popular on social media',
+							],
+							1,
+							'A controlled pilot with measured output is direct evidence for the claim.',
+						],
+						[
+							"'Sales rose after our advertising campaign, so the campaign caused the increase.' Which fact most weakens this?",
+							[
+								'The campaign was expensive',
+								'Our main competitor shut down the same month',
+								'Customers liked the adverts',
+								'Sales also rose the following month',
+							],
+							1,
+							"The competitor's closure is a plausible alternative cause of the rise.",
+						],
+						[
+							'Is x greater than 5?\n(1) x > 3\n(2) x > 6\nWhich statement(s) are sufficient to answer?',
+							[
+								'(1) alone',
+								'(2) alone',
+								'Both together, but neither alone',
+								'Neither',
+							],
+							1,
+							'x > 6 guarantees x > 5. x > 3 allows values such as 4, which fails.',
+						],
+						[
+							"Three boxes are labelled 'Apples', 'Oranges' and 'Mixed', and every label is wrong. You may take one fruit from one box. Which box should you pick from to relabel all three correctly?",
+							['Apples', 'Oranges', 'Mixed', 'It is impossible'],
+							2,
+							"The 'Mixed' box must contain only one fruit type. Once you know it, the other two labels follow by elimination.",
+						],
+						[
+							'A team is choosing between two fraud-detection models. Which is the best evidence that the new model is better?',
+							[
+								'It uses more advanced algorithms',
+								'It caught more fraud with fewer false alarms on data neither model was trained on',
+								'The vendor rates it highly',
+								'It runs faster',
+							],
+							1,
+							'Performance on unseen data, measured on both catches and false alarms, is the most relevant evidence.',
+						],
+						[
+							'Which of these is a statement of fact rather than opinion?',
+							[
+								"The bank's new app is the best in Nigeria",
+								'The bank opened 20 new branches in 2025',
+								'Customers deserve lower fees',
+								'Digital banking is the future',
+							],
+							1,
+							'Only the number of branches can be objectively verified.',
+						],
+						[
+							'A is taller than B. C is shorter than B. D is taller than A. Who is the shortest?',
+							['A', 'B', 'C', 'D'],
+							2,
+							'The order from tallest is D, A, B, C.',
+						],
+						[
+							'Complaints about failed transfers rose 40% this month. What should be done first?',
+							[
+								'Increase the customer service budget',
+								'Analyse failed-transaction logs to find the root cause',
+								'Apologise publicly on social media',
+								'Turn off the transfer feature',
+							],
+							1,
+							'You need to understand the cause before choosing a fix. The other options act without evidence.',
+						],
+						[
+							'Branch X has both the highest revenue and the highest costs of all branches. What can you conclude?',
+							[
+								'Branch X is the most profitable',
+								'Branch X is the least profitable',
+								'Profitability cannot be determined from this information alone',
+								'Branch X should be closed',
+							],
+							2,
+							'Profit = revenue − cost. Without the actual figures you cannot rank its profit.',
+						],
+						[
+							'A bank surveys only its mobile-app users and finds 90% are satisfied with its services. What is the main problem with concluding that 90% of all customers are satisfied?',
+							[
+								'The sample is biased',
+								'90% is too high',
+								'Surveys are always wrong',
+								'The app is new',
+							],
+							0,
+							'App users are not representative of customers who only use branches or USSD.',
+						],
+						[
+							'P, Q, R and S each work in a different department: IT, HR, Finance or Operations. P is not in IT or HR. Q is in Finance. R is not in IT. Which department is S in?',
+							['HR', 'IT', 'Operations', 'Finance'],
+							1,
+							'P must be Operations (not IT, HR or Finance). R is not IT, so R is HR. That leaves IT for S.',
+						],
+						[
+							"Statement: 'The company should move its servers to the cloud to reduce costs.' Which is an assumption behind this statement?",
+							[
+								'Cloud services are always more secure',
+								'Running servers in the cloud will cost less than the current set-up',
+								'All staff know how to code',
+								'The company has no servers',
+							],
+							1,
+							'The recommendation only makes sense if the cloud is assumed to be cheaper.',
+						],
+						[
+							"Every 'zeb' is a 'kip'. No 'kip' is a 'lum'. Which must be true?",
+							[
+								'Some zebs are lums',
+								'No zeb is a lum',
+								'All lums are kips',
+								'Some kips are lums',
+							],
+							1,
+							"Zebs are a subset of kips, and kips never overlap with lums, so zebs can't be lums.",
+						],
+					],
+				},
+				{
+					id: 'soft',
+					name: 'Soft Skills',
+					mock: 7,
+					blurb: 'Teamwork, communication, judgement',
+					items: [
+						[
+							'A teammate keeps missing deadlines, which delays your part of a group project. What is the best first step?',
+							[
+								'Report them to the programme manager straight away',
+								'Talk to them privately to understand the problem and agree a plan',
+								'Quietly do their work yourself',
+								'Complain about it in the group chat',
+							],
+							1,
+							"Start with a direct, respectful conversation. Escalate only if that doesn't work.",
+						],
+						[
+							'A customer is angry because a transfer failed but their account was debited. What should you do first?',
+							[
+								'Tell them it is a network issue and nothing can be done',
+								'Listen, acknowledge their frustration, and explain the next steps and timeline for the reversal',
+								'Transfer them to another department immediately',
+								'Ask them to come back tomorrow',
+							],
+							1,
+							'Empathy, ownership and a clear resolution path calm the situation and build trust.',
+						],
+						[
+							'You realise a bug you wrote is already live and is affecting some users. What should you do?',
+							[
+								'Fix it quietly and say nothing',
+								'Inform your lead immediately, explain the impact and propose a fix',
+								'Wait to see whether anyone notices',
+								'Blame the testing team',
+							],
+							1,
+							'Transparency and fast escalation limit the damage, especially in banking.',
+						],
+						[
+							'You are given a task with unclear requirements and a tight deadline. What is the best approach?',
+							[
+								'Start immediately and guess what is wanted',
+								'Ask a few targeted questions to confirm the expectations, then start',
+								'Wait until someone gives you more detail',
+								'Decline the task',
+							],
+							1,
+							'A short clarification up front prevents rework.',
+						],
+						[
+							'Two managers each give you an urgent task due at the same time. What should you do?',
+							[
+								'Do whichever task is easier',
+								'Tell both managers about the conflict and ask them to agree the priority',
+								'Do both badly to meet the deadline',
+								'Ignore the later request',
+							],
+							1,
+							'Make the conflict visible so the people accountable can set the priority.',
+						],
+						[
+							'A reviewer leaves several critical comments on your code. How should you respond?',
+							[
+								'Defend every line you wrote',
+								'Consider each point, ask about anything unclear and make the improvements',
+								'Ignore comments you disagree with',
+								'Ask a different reviewer',
+							],
+							1,
+							'Treating feedback as a chance to learn shows a growth mindset and coachability.',
+						],
+						[
+							"In a group discussion, one member dominates and quieter members aren't contributing. As a participant, what is the best action?",
+							[
+								'Say nothing',
+								'Invite the quieter members to share their views and suggest everyone takes turns',
+								'Tell the dominant member to stop talking',
+								'Leave the discussion',
+							],
+							1,
+							'Including everyone constructively improves the outcome without creating conflict.',
+						],
+						[
+							'Your task requires a technology you have never used. What is the best approach?',
+							[
+								"Tell your lead you can't do it",
+								'Study the documentation, build a small test and ask for guidance where stuck',
+								'Copy code from the internet without understanding it',
+								'Choose a different technology without telling anyone',
+							],
+							1,
+							'Self-directed learning plus asking for help at the right time is what bootcamps look for.',
+						],
+						[
+							'A colleague offers to share their system password so you can finish your work faster. What should you do?',
+							[
+								'Accept it this once',
+								'Decline and request the proper access through the official process',
+								'Accept but change the password later',
+								'Share yours in return',
+							],
+							1,
+							'Sharing credentials breaks security policy and destroys the audit trail.',
+						],
+						[
+							'You realise you will miss a deadline you agreed to. What should you do?',
+							[
+								'Say nothing and submit late',
+								'Notify the stakeholders early with the reason and a realistic new date',
+								'Submit unfinished work on time without explanation',
+								'Ask a colleague to take the blame',
+							],
+							1,
+							'Early communication gives others time to adjust.',
+						],
+						[
+							'Which best describes a growth mindset?',
+							[
+								'Believing ability is fixed at birth',
+								'Believing abilities can be developed through effort, learning and feedback',
+								'Avoiding challenges to protect your reputation',
+								'Focusing only on results',
+							],
+							1,
+							'A growth mindset treats challenges and mistakes as part of learning.',
+						],
+						[
+							'You need to explain a technical system outage to non-technical senior managers. What is the best approach?',
+							[
+								'Use detailed technical terms to show expertise',
+								'Use plain language and focus on the impact, the cause, and what is being done',
+								'Send them the server logs',
+								'Avoid the meeting',
+							],
+							1,
+							'Tailor the message to the audience and lead with impact and actions.',
+						],
+						[
+							'Your team disagrees about which technical approach to use. What should you do?',
+							[
+								'Insist on your own idea',
+								'Agree on the decision criteria, compare the options against them, decide, and then all commit',
+								'Let the most senior person decide without discussion',
+								'Postpone the decision indefinitely',
+							],
+							1,
+							'Objective criteria resolve the disagreement, and committing afterwards keeps the team together.',
+						],
+						[
+							'While working on a task, you notice a suspicious transaction pattern that is outside your responsibility. What should you do?',
+							[
+								"Ignore it because it's not your job",
+								'Report it through the proper channel, such as your lead or the fraud/compliance team',
+								"Investigate the customer's account on your own",
+								'Post about it on social media',
+							],
+							1,
+							'Raise risks through the right channel without overstepping your access.',
+						],
+						[
+							'You have a long to-do list. Using the Eisenhower matrix, which tasks should you do first?',
+							[
+								'Not urgent and not important',
+								'Urgent but not important',
+								'Urgent and important',
+								'Important but not urgent',
+							],
+							2,
+							'Urgent and important tasks come first. Important but not urgent tasks are scheduled; urgent but unimportant ones are delegated where possible.',
+						],
+					],
+				},
+			];
+
+			const $ = s => document.querySelector(s);
+			const esc = s =>
+				String(s).replace(
+					/[&<>"]/g,
+					c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c],
+				);
+			const KEYS = 'ABCDE';
+			function shuffle(a) {
+				a = a.slice();
+				for (let i = a.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[a[i], a[j]] = [a[j], a[i]];
+				}
+				return a;
+			}
+			function prep(sec, it) {
+				const [q, o, a, e, p] = it;
+				const keep = o === TF;
+				const idx = keep ? o.map((_, i) => i) : shuffle(o.map((_, i) => i));
+				return {
+					sec: sec.id,
+					secName: sec.name,
+					q,
+					opts: idx.map(i => o[i]),
+					a: idx.indexOf(a),
+					e,
+					p,
+				};
+			}
+			function show(id) {
+				['home', 'exam', 'results', 'practice'].forEach(
+					v => ($('#v-' + v).hidden = v !== id),
+				);
+				window.scrollTo(0, 0);
+			}
+			function fmt(s) {
+				s = Math.max(0, Math.round(s));
+				return (
+					String(Math.floor(s / 60)).padStart(2, '0') +
+					':' +
+					String(s % 60).padStart(2, '0')
+				);
+			}
+			function qHTML(Q) {
+				return (
+					(Q.p ? `<div class="passage">${esc(PASSAGES[Q.p])}</div>` : '') +
+					`<div class="qtext">${esc(Q.q)}</div>`
+				);
+			}
+
+			/* ---------- home ---------- */
+			const total = SECTIONS.reduce((n, s) => n + s.items.length, 0);
+			$('#f-total').textContent = total + ' questions in bank';
+			$('#sec-list').innerHTML =
+				SECTIONS.map(
+					s =>
+						`<button class="sec-btn" data-sec="${s.id}"><span>${esc(s.name)}</span><small>${s.items.length}</small></button>`,
+				).join('') +
+				`<button class="sec-btn" data-sec="all"><span>Mixed, all sections</span><small>${total}</small></button>`;
+			$('#sec-list').addEventListener('click', e => {
+				const b = e.target.closest('[data-sec]');
+				if (b) startPractice(b.dataset.sec);
+			});
+			function getHist() {
+				try {
+					return JSON.parse(localStorage.getItem('ubtb-hist') || '[]');
+				} catch (e) {
+					return [];
+				}
+			}
+			function renderHist() {
+				const h = getHist();
+				$('#history').innerHTML = h.length
+					? 'Recent attempts: ' +
+						h
+							.slice(-5)
+							.reverse()
+							.map(x => `<span class="mono">${x.pct}%</span>`)
+							.join('')
+					: '';
+			}
+			renderHist();
+
+			/* ---------- mock exam ---------- */
+			let ex = null;
+			$('#start-mock').onclick = () => {
+				ex = {
+					secs: SECTIONS.map(s => ({
+						id: s.id,
+						name: s.name,
+						qs: shuffle(s.items)
+							.slice(0, s.mock)
+							.map(it => prep(s, it)),
+					})),
+					si: 0,
+					qi: 0,
+					ans: {},
+					flags: {},
+					start: Date.now(),
+					end: Date.now() + 75 * 60 * 1000,
+					timer: null,
+				};
+				ex.total = ex.secs.reduce((n, s) => n + s.qs.length, 0);
+				ex.timer = setInterval(tick, 500);
+				tick();
+				show('exam');
+				renderExam();
+			};
+			function k(si, qi) {
+				return si + '-' + qi;
+			}
+			function tick() {
+				const left = (ex.end - Date.now()) / 1000;
+				const c = $('#clock');
+				c.textContent = fmt(left);
+				c.classList.toggle('low', left < 600 && left >= 120);
+				c.classList.toggle('crit', left < 120);
+				if (left <= 0) finishExam();
+			}
+			function renderExam() {
+				const S = ex.secs[ex.si],
+					Q = S.qs[ex.qi];
+				$('#ex-secno').textContent =
+					`Section ${ex.si + 1} of ${ex.secs.length}`;
+				$('#ex-secname').textContent = S.name;
+				const before = ex.secs
+					.slice(0, ex.si)
+					.reduce((n, s) => n + s.qs.length, 0);
+				$('#ex-count').textContent =
+					`Question ${before + ex.qi + 1} of ${ex.total}  ·  ${ex.qi + 1}/${S.qs.length} in section`;
+				const answered = Object.keys(ex.ans).length;
+				$('#ex-track').style.width = (answered / ex.total) * 100 + '%';
+				$('#dots').innerHTML = S.qs
+					.map(
+						(_, i) =>
+							`<button class="dot${ex.ans[k(ex.si, i)] !== undefined ? ' done' : ''}${i === ex.qi ? ' cur' : ''}${ex.flags[k(ex.si, i)] ? ' flag' : ''}" data-i="${i}" aria-label="Question ${i + 1}">${i + 1}</button>`,
+					)
+					.join('');
+				const sel = ex.ans[k(ex.si, ex.qi)];
+				$('#ex-card').innerHTML =
+					qHTML(Q) +
+					`<div class="opts" role="radiogroup">${Q.opts.map((o, i) => `<button class="opt${sel === i ? ' sel' : ''}" role="radio" aria-checked="${sel === i}" data-o="${i}"><span class="key">${KEYS[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>`;
+				$('#flag').classList.toggle('on', !!ex.flags[k(ex.si, ex.qi)]);
+				$('#flag').textContent = ex.flags[k(ex.si, ex.qi)]
+					? 'Flagged'
+					: 'Flag for review';
+				$('#prev').disabled = ex.qi === 0;
+				const lastQ = ex.qi === S.qs.length - 1,
+					lastS = ex.si === ex.secs.length - 1;
+				$('#next').textContent = lastQ
+					? lastS
+						? 'Submit exam'
+						: 'Finish section'
+					: 'Next';
+				$('#confirm').hidden = true;
+			}
+			$('#ex-card').addEventListener('click', e => {
+				const b = e.target.closest('[data-o]');
+				if (!b) return;
+				ex.ans[k(ex.si, ex.qi)] = +b.dataset.o;
+				renderExam();
+			});
+			$('#dots').addEventListener('click', e => {
+				const b = e.target.closest('[data-i]');
+				if (!b) return;
+				ex.qi = +b.dataset.i;
+				renderExam();
+			});
+			$('#flag').onclick = () => {
+				const key = k(ex.si, ex.qi);
+				ex.flags[key] = !ex.flags[key];
+				renderExam();
+			};
+			$('#prev').onclick = () => {
+				if (ex.qi > 0) {
+					ex.qi--;
+					renderExam();
+				}
+			};
+			$('#next').onclick = () => {
+				const S = ex.secs[ex.si];
+				if (ex.qi < S.qs.length - 1) {
+					ex.qi++;
+					renderExam();
+					return;
+				}
+				const un = S.qs.filter(
+					(_, i) => ex.ans[k(ex.si, i)] === undefined,
+				).length;
+				const fl = S.qs.filter((_, i) => ex.flags[k(ex.si, i)]).length;
+				const lastS = ex.si === ex.secs.length - 1;
+				$('#confirm-title').textContent = lastS
+					? 'Submit the exam?'
+					: 'Finish this section?';
+				$('#confirm-text').textContent =
+					(lastS
+						? "You won't be able to change any answers. "
+						: "You can't return to this section once you continue. ") +
+					`Unanswered: ${un}. Flagged: ${fl}.`;
+				$('#confirm-yes').textContent = lastS
+					? 'Submit exam'
+					: 'Go to next section';
+				$('#confirm').hidden = false;
+				$('#confirm').scrollIntoView({ block: 'nearest' });
+			};
+			$('#confirm-no').onclick = () => {
+				$('#confirm').hidden = true;
+			};
+			$('#confirm-yes').onclick = () => {
+				if (ex.si === ex.secs.length - 1) {
+					finishExam();
+					return;
+				}
+				ex.si++;
+				ex.qi = 0;
+				renderExam();
+				window.scrollTo(0, 0);
+			};
+			document.addEventListener('keydown', e => {
+				if (e.target.closest && e.target.closest('input,textarea')) return;
+				const L = e.key.toUpperCase();
+				const i = KEYS.indexOf(L);
+				if (!$('#v-exam').hidden && ex && i >= 0 && i < 4) {
+					const Q = ex.secs[ex.si].qs[ex.qi];
+					if (i < Q.opts.length) {
+						ex.ans[k(ex.si, ex.qi)] = i;
+						renderExam();
+					}
+				}
+				if (
+					!$('#v-practice').hidden &&
+					pr &&
+					i >= 0 &&
+					i < 4 &&
+					pr.picked === null
+				) {
+					answerPractice(i);
+				}
+			});
+
+			let revFilter = false;
+			function finishExam() {
+				if (!ex || ex.done) return;
+				ex.done = true;
+				clearInterval(ex.timer);
+				const used = Math.min(75 * 60, (Date.now() - ex.start) / 1000);
+				let right = 0;
+				const per = ex.secs.map((S, si) => {
+					let r = 0;
+					S.qs.forEach((Q, qi) => {
+						if (ex.ans[k(si, qi)] === Q.a) r++;
+					});
+					right += r;
+					return { name: S.name, r, n: S.qs.length };
+				});
+				const pct = Math.round((right / ex.total) * 100);
+				$('#r-pct').textContent = pct + '%';
+				$('#r-sub').textContent =
+					`${right} of ${ex.total} correct · time used ${fmt(used)}`;
+				$('#r-secs').innerHTML = per
+					.map(p => {
+						const v = Math.round((p.r / p.n) * 100);
+						const col =
+							v >= 70 ? 'var(--ok)' : v >= 50 ? 'var(--warn)' : 'var(--bad)';
+						return `<div class="sline"><span>${esc(p.name)}</span><div class="meter"><i style="width:${v}%;background:${col}"></i></div><span class="mono" style="text-align:right">${p.r}/${p.n}</span></div>`;
+					})
+					.join('');
+				const weak = per.filter(p => p.r / p.n < 0.6).map(p => p.name);
+				$('#r-advice').textContent = weak.length
+					? `Focus your next practice on: ${weak.join(', ')}.`
+					: 'Every section is at 60% or above. Take another mock to check it holds on a fresh set.';
+				try {
+					const h = getHist();
+					h.push({ pct, d: Date.now() });
+					localStorage.setItem('ubtb-hist', JSON.stringify(h.slice(-20)));
+				} catch (e) {}
+				revFilter = false;
+				renderReview();
+				show('results');
+			}
+			function renderReview() {
+				$('#r-filter').textContent = revFilter
+					? 'Show all'
+					: 'Show mistakes only';
+				$('#r-filter').setAttribute('aria-pressed', revFilter);
+				let n = 0;
+				const html = [];
+				ex.secs.forEach((S, si) =>
+					S.qs.forEach((Q, qi) => {
+						n++;
+						const a = ex.ans[k(si, qi)];
+						const ok = a === Q.a;
+						if (revFilter && ok) return;
+						html.push(
+							`<div class="ritem ${ok ? 'ok' : 'no'}"><div class="row"><span class="pill">${esc(S.name)}</span><span class="muted mono">Q${n}</span></div>${Q.p ? `<div class="passage">${esc(PASSAGES[Q.p])}</div>` : ''}<div style="white-space:pre-line;font-weight:500">${esc(Q.q)}</div><div>Your answer: <b>${a === undefined ? 'Not answered' : esc(Q.opts[a])}</b>${ok ? '' : ` · Correct: <b>${esc(Q.opts[Q.a])}</b>`}</div><div class="muted">${esc(Q.e)}</div></div>`,
+						);
+					}),
+				);
+				$('#r-list').innerHTML = html.length
+					? html.join('')
+					: `<p class="muted">No mistakes to show.</p>`;
+			}
+			$('#r-filter').onclick = () => {
+				revFilter = !revFilter;
+				renderReview();
+			};
+			$('#r-home').onclick = () => {
+				renderHist();
+				show('home');
+			};
+
+			/* ---------- practice ---------- */
+			let pr = null;
+			function startPractice(id) {
+				const secs =
+					id === 'all' ? SECTIONS : SECTIONS.filter(s => s.id === id);
+				const qs = shuffle(secs.flatMap(s => s.items.map(it => prep(s, it))));
+				pr = {
+					name: id === 'all' ? 'Mixed, all sections' : secs[0].name,
+					qs,
+					i: 0,
+					right: 0,
+					done: 0,
+					picked: null,
+				};
+				$('#p-name').textContent = pr.name;
+				show('practice');
+				renderPractice();
+			}
+			function renderPractice() {
+				const Q = pr.qs[pr.i];
+				$('#p-count').textContent =
+					`Question ${pr.i + 1} of ${pr.qs.length}` +
+					(pr.name.startsWith('Mixed') ? `  ·  ${Q.secName}` : '');
+				$('#p-score').textContent = `${pr.right} / ${pr.done}`;
+				$('#p-track').style.width = (pr.done / pr.qs.length) * 100 + '%';
+				const p = pr.picked;
+				let fb = '';
+				if (p !== null) {
+					const ok = p === Q.a;
+					fb = `<div class="feedback ${ok ? 'ok' : 'no'}"><b>${ok ? 'Correct.' : 'Not quite. The answer is ' + esc(KEYS[Q.a]) + ': ' + esc(Q.opts[Q.a]) + '.'}</b>${esc(Q.e)}</div>`;
+				}
+				$('#p-card').innerHTML =
+					qHTML(Q) +
+					`<div class="opts">${Q.opts
+						.map((o, i) => {
+							let c = '';
+							if (p !== null) {
+								if (i === Q.a) c = ' right';
+								else if (i === p) c = ' wrong';
+							}
+							return `<button class="opt${c}" data-o="${i}" ${p !== null ? 'disabled' : ''}><span class="key">${KEYS[i]}</span><span>${esc(o)}</span></button>`;
+						})
+						.join('')}</div>` +
+					fb;
+				$('#p-next').disabled = p === null;
+				$('#p-next').textContent =
+					pr.i === pr.qs.length - 1 ? 'Finish' : 'Next question';
+			}
+			function answerPractice(i) {
+				pr.picked = i;
+				pr.done++;
+				if (i === pr.qs[pr.i].a) pr.right++;
+				renderPractice();
+			}
+			$('#p-card').addEventListener('click', e => {
+				const b = e.target.closest('[data-o]');
+				if (!b || pr.picked !== null) return;
+				answerPractice(+b.dataset.o);
+			});
+			$('#p-next').onclick = () => {
+				if (pr.i === pr.qs.length - 1) {
+					endPractice();
+					return;
+				}
+				pr.i++;
+				pr.picked = null;
+				renderPractice();
+				window.scrollTo(0, 0);
+			};
+			function endPractice() {
+				$('#calc').hidden = true;
+				show('home');
+			}
+			$('#p-end').onclick = endPractice;
+
+			/* ---------- calculator ---------- */
+			const CK = [
+				'C',
+				'⌫',
+				'(',
+				')',
+				'÷',
+				'7',
+				'8',
+				'9',
+				'√',
+				'×',
+				'4',
+				'5',
+				'6',
+				'^',
+				'−',
+				'1',
+				'2',
+				'3',
+				'π',
+				'+',
+				'0',
+				'.',
+				'%',
+				'Ans',
+				'=',
+			];
+			$('#c-keys').innerHTML = CK.map(
+				x =>
+					`<button class="${'÷×−+^√%'.includes(x) ? 'op' : ''}${x === '=' ? ' eq' : ''}" data-c="${x}">${x}</button>`,
+			).join('');
+			let cexp = '',
+				cans = 0;
+			function calcEval(s) {
+				let t = s
+					.replace(/×/g, '*')
+					.replace(/÷/g, '/')
+					.replace(/−/g, '-')
+					.replace(/\^/g, '**')
+					.replace(/π/g, '(PI)')
+					.replace(/√/g, 'SQ')
+					.replace(/Ans/g, '(' + cans + ')')
+					.replace(/(\d+(?:\.\d+)?)%/g, '($1/100)');
+				t = t.replace(/(\d|\))(\(|SQ|PI)/g, '$1*$2');
+				const chk = t.replace(/SQ|PI/g, '');
+				if (!/^[0-9+\-*/().\s]*$/.test(chk)) throw new Error('bad');
+				t = t.replace(/SQ/g, 'Math.sqrt').replace(/PI/g, 'Math.PI');
+				const r = Function('"use strict";return (' + t + ')')();
+				if (typeof r !== 'number' || !isFinite(r)) throw new Error('bad');
+				return Math.round(r * 1e10) / 1e10;
+			}
+			function calcShow(rs) {
+				$('#c-ex').textContent = cexp;
+				$('#c-rs').textContent = rs;
+			}
+			$('#c-keys').addEventListener('click', e => {
+				const b = e.target.closest('[data-c]');
+				if (!b) return;
+				const c = b.dataset.c;
+				if (c === 'C') {
+					cexp = '';
+					calcShow('0');
+					return;
+				}
+				if (c === '⌫') {
+					cexp = cexp.endsWith('Ans') ? cexp.slice(0, -3) : cexp.slice(0, -1);
+					calcShow(cexp || '0');
+					return;
+				}
+				if (c === '=') {
+					try {
+						cans = calcEval(cexp);
+						calcShow(String(cans));
+						cexp = '';
+					} catch (err) {
+						calcShow('Error');
+					}
+					return;
+				}
+				if (c === '√') {
+					cexp += '√(';
+				} else cexp += c;
+				calcShow(cexp);
+			});
+			function toggleCalc() {
+				const c = $('#calc');
+				c.hidden = !c.hidden;
+				$('#calc-toggle').setAttribute('aria-pressed', !c.hidden);
+			}
+			$('#calc-toggle').onclick = toggleCalc;
+			$('#p-calc').onclick = toggleCalc;
+			$('#calc-close').onclick = () => {
+				$('#calc').hidden = true;
+			};
+		</script>
+	</body>
+</html>
